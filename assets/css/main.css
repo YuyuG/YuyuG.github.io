@@ -57,6 +57,8 @@
 		box-sizing: border-box;
 	}
 
+	.titlebar { display: none!important;}
+
 /* Grid */
 
 	.row {
