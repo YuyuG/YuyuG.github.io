@@ -4,24 +4,28 @@
 a:link {
   font-face: American Typewriter; 
   color: #666666;
+  font-size: 12px;
 }
 
 /* visited link */
 a:visited {
   font-face: American Typewriter; 
   color: #666666;
+  font-size: 12px;
 }
 
 /* mouse over link */
 a:hover {
   font-face: American Typewriter; 
   color: #666666;
+  font-size: 12px;
 }
 
 /* selected link */
 a:active {
   font-face: American Typewriter; 
   color: #666666;
+  font-size: 12px;
 } 
 
 .webgl-content * {border: 0; margin: 0; padding: 0;}
@@ -40,6 +44,6 @@ a:active {
 .webgl-content .footer {margin-top: 5px; height: 38px; line-height: 38px; font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 18px;}
 .webgl-content .footer .webgl-logo, .title, .fullscreen {height: 100%; display: inline-block; background: transparent center no-repeat;}
 .webgl-content .footer .webgl-logo {background-image: url('webgl-logo.png'); width: 204px; float: left;}
-.webgl-content .footer .title {float: left; font-face: American Typewriter; color: #666666;}
-.webgl-content .footer .references {float: left; font-face: American Typewriter; color: #666666;}
+.webgl-content .footer .title {float: left; font-face: American Typewriter; color: #666666; font-size: 14px;}
+.webgl-content .footer .references {float: left; font-face: American Typewriter; color: #666666; font-size: 12px;}
 .webgl-content .footer .fullscreen {background-image: url('fullscreenIcon_s.png'); width: 32px; float: right;}
