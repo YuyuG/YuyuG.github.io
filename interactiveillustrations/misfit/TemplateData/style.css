@@ -1,4 +1,5 @@
-.webgl-content * {border: 0; margin: 0; padding: 0; background-color: #000000;}
+.body {background-color: #000000;}
+.webgl-content * {border: 0; margin: 0; padding: 0;}
 .webgl-content {position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);}
 
 .webgl-content .logo, .progress {position: absolute; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);}
@@ -14,5 +15,6 @@
 .webgl-content .footer {margin-top: 5px; height: 38px; line-height: 38px; font-family: Helvetica, Verdana, Arial, sans-serif; font-size: 18px;}
 .webgl-content .footer .webgl-logo, .title, .fullscreen {height: 100%; display: inline-block; background: transparent center no-repeat;}
 .webgl-content .footer .webgl-logo {background-image: url('webgl-logo.png'); width: 204px; float: left;}
-.webgl-content .footer .title {float: left; font: American Typewriter;}
+.webgl-content .footer .title {float: left; font: American Typewriter; color: white;}
+.webgl-content .footer .references {float: left; font: American Typewriter; color: white;}
 .webgl-content .footer .fullscreen {background-image: url('fullscreenIcon_s.png'); width: 32px; float: right;}
