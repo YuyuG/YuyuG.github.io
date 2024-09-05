@@ -1,0 +1,808 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Earthless - UI/UX 0-1</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style>
+</head><body><article id="1eeda9e8-e1c4-4461-9b8b-7f3b1b5cc563" class="page sans"><header><img class="page-cover-image" src="earthless/353465798_190606110633737_2183886909092284105_n.png" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🦉</span></div>
+<a href="index.html#main"><h1 class="highlight-gray">Back</g1></a>
+	<h1 class="page-title">Earthless - UI/UX 0-1</h1><p class="page-description"></p></header><div class="page-body"><h1 id="9f9a1296-0ac4-48c2-a29e-80e2ee401c61" class="">How do we distinguish ourselves from the swarming rogue-like deckbuilders? <strong>🤔</strong></h1><p id="65ec6b42-9cd8-41cb-8be8-7fd3ee5710a1" class="">
+</p><ul id="7aa79a89-1cbb-46e0-8555-d9d2b5e05ed9" class="bulleted-list"><li style="list-style-type:disc">Our sauce: Deckbuilder x Tactical Gameplay, with outstanding visual and unique diegetic UI.</li></ul><p id="2ff933f3-7735-4c4d-a2dd-2f096fdb6cf9" class="">
+</p><p id="4485ce37-5466-4281-a88d-464ef82a09ab" class="">Imagine Slay the Spire x Xcom, in space. Early 2020, Hoi-Fung Ma, Maher Manobi and I pitched a game concept together to our studio, Blackbird Interactive Inc.. </p><p id="40515592-053a-4531-afe6-cfdd4db11ac6" class="">
+</p><p id="ad3a7c02-9859-4314-8393-fde0704e6c13" class="">With a paper prototype and a single-level digital prototype, the project attracted wide publisher interests at the GDC 2020 private sessions, which led to an green-lit production.</p><p id="7ab58da4-f1bd-4a7d-8c44-e59a95eb1198" class="">
+</p><figure id="53998aed-6a22-4eb7-9d08-bb5cbc636702" class="image"><a href="earthless/v1.jpg"><img style="width:708px" src="earthless/v1.jpg"/></a></figure><p id="0a77a978-554d-4f1d-990a-c865c48b831e" class=""><em>Game screenshot for Steam Next Fest, 2023</em><br></br></p><hr id="a18118f4-41e5-4d13-a1ff-51ac11966150"/><p id="6751ceb1-ed3d-4e0c-bee6-f31dc71d9c1c" class="">
+</p><p id="315c935c-f475-49af-b979-94cda9b5a127" class="block-color-gray"><mark class="highlight-default"><strong>EARTHLESS </strong></mark><mark class="highlight-default">is a rogue-like deck builder with tactical gameplay, set in a sci-fi retrofuturistic style.</mark></p><p id="63f0bd60-90fc-4fed-bb85-7516b5467b4c" class=""><strong>My Role:</strong> Lead UI/UX Designer + Tech UI Designer</p><p id="4cee5311-a364-4fae-8529-e31f65777600" class=""><strong>Project Span:</strong> 2020 - 2024 (Early Access)</p><p id="4289df6e-966e-4d45-a36c-90fc9a2e7871" class=""><strong>Key Differentiators: </strong>Tactical Gameplay x Deckbuilder, Retrofuturism, Diegetic UI</p><p id="167d9a91-64d6-44fd-a1a3-e6d29d92710c" class=""><strong>Tools I Used: </strong>Figma, Unity, Illustrator, Photoshop, Miro</p><p id="ac7e244d-aa9d-4931-98aa-25080bb57342" class="">
+</p><hr id="0cdbf25e-7def-4f7e-aeeb-ed1b95f2fec0"/><h1 id="7554a56b-9577-4f0d-a2e3-56927e7aff74" class="">Competitors - What’s Done Right? What’s Done Wrong?</h1><p id="5701452c-ec87-4e6b-827d-6ce96cdff9c3" class="block-color-gray">i.e. XCOM, Into the Breach, Slay the Spire, Monster Train, and one of my favourites, Fire Emblem… and our direct competitors such as Breachway and Alina of the Arena…etc.</p><p id="44c992d1-d00e-4bef-b885-e4c26d797143" class="">We want to attract audiences from all of the above - people who enjoy strategic and replay-able gameplay, and those who appreciate sci-fi and space, which are core to the studio.</p><p id="f0b11f63-3fbf-4d1c-a46b-51ad1530c7ee" class="">By collecting <strong>user feedback</strong> and analyzing their user experiences against core <strong>heuristics</strong>, I was able to prevent many potential errors throughout our production.</p><p id="17a26d36-11f6-42b3-8c9c-39c0931d52b4" class="">
+</p><figure id="f811e464-5a96-4a89-a5d2-da5c92ae2bd2" class="image"><a href="earthless/Screenshot_2024-07-02_at_10.59.05_PM.png"><img style="width:2518px" src="earthless/Screenshot_2024-07-02_at_10.59.05_PM.png"/></a></figure><p id="99737c4c-90a6-404f-8ad2-83d71c33c233" class="">
+</p><p id="463931cc-facf-4a08-9eea-951852affd54" class="">Combining our core gameplay, I provided an in-game screen layout which we soon tested in the greybox prototype made in the engine.</p><p id="ee15c10a-384a-4ec6-9117-7086622bd022" class="">
+</p><div id="79f2db83-e187-423f-ad5b-f219d2d1850e" class="column-list"><div id="2d8f9f5e-19ec-46b3-a4f2-00500726f777" style="width:50%" class="column"><figure id="367d8d59-6e54-486c-908f-fd96087ecd0f" class="image"><a href="earthless/Owl_UI_UX_-_Copy_of_UI_Blocking_(Highlighted_by_Pirority_of_Information).jpg"><img style="width:2678px" src="earthless/Owl_UI_UX_-_Copy_of_UI_Blocking_(Highlighted_by_Pirority_of_Information).jpg"/></a></figure></div><div id="d2e6a9ed-0b0d-4101-b9b3-9279c387bca7" style="width:50%" class="column"><figure id="604196cf-9d94-4bca-9ba6-165481357215" class="image"><a href="earthless/InteractionFlow_4DirectionalConsumables.png"><img style="width:708px" src="earthless/InteractionFlow_4DirectionalConsumables.png"/></a></figure><p id="8b5b008b-79d2-4d23-b59c-c85ee86e29f5" class="">
+</p></div></div><p id="57e19b38-b034-4e61-9847-dab632338f74" class="">
+</p><hr id="dd996d8b-c569-49ed-8eb5-c54ba20c1cdb"/><h1 id="309a8bf5-064d-4e87-ae12-189b8f09f432" class="">Designing a Complex System 🎮</h1><p id="9be0bad8-4831-481e-a3e9-5ba93a13d5ad" class="">
+</p><p id="9ed97f16-e48d-4c85-87b7-67ac71c44c49" class="">First, I focused on the most essential system: the in-game interfaces, designed in three layers.</p><ul id="f4c6beee-6d17-4f25-9e6a-b09d0b06d2d1" class="bulleted-list"><li style="list-style-type:disc"><strong>The “grid”</strong> - the holographic battlefield for tactical gameplay. </li></ul><ul id="5837a7b8-1141-4eec-bbb4-fce230d38d18" class="bulleted-list"><li style="list-style-type:disc"><strong>The “Captain’s Console”</strong> - where the player (as the captain) keeps track of ship status and plays cards (by issuing “commands”, fictionally).</li></ul><ul id="d1ebd821-99ca-43de-937c-f009a3c75198" class="bulleted-list"><li style="list-style-type:disc"><strong>The HUD</strong> - taking place at the upper half of the screen containing additional information, visible when needed (by hovering / toggling).  </li></ul><p id="dab87ca3-310b-460b-9f3b-2150e09bd9fd" class="">
+</p><div id="a49ef398-1876-415b-bf20-74d98399a43c" class="column-list"><div id="c2918f50-42c9-4a09-aea9-10ca088d991d" style="width:50%" class="column"><figure id="6e7da765-224f-4127-b4f5-1acdffc880a0" class="image"><a href="earthless/01_1_CaptainsConsole_Encounter_16_9.png"><img style="width:1920px" src="earthless/01_1_CaptainsConsole_Encounter_16_9.png"/></a></figure></div><div id="dca5a211-caee-4b98-8e63-e9c76c7a5840" style="width:50%" class="column"><figure id="69bf09d6-372d-4e97-817a-3ff1d4b3d0bc" class="image"><a href="earthless/1080pWithAROverlay.png"><img style="width:1920px" src="earthless/1080pWithAROverlay.png"/></a></figure></div></div><p id="be06e673-4592-4359-8cea-49156cda1645" class="">
+</p><p id="4904aba2-9651-49b3-a8bd-764e06b6fedd" class="">Then, I move on to the UX design of each sub-system of the game play.</p><p id="731e8fe1-9814-428a-918b-9af20f7e09b3" class="">
+</p><h3 id="e34d3270-4339-43f5-b493-eca1d14e85d8" class="">An example of In-Game Sub Systems - a Preview System:</h3><p id="689da922-1d4b-4c19-8bfd-9b72f7e6d7c3" class="">
+</p><p id="c384862c-f14b-4c4d-a078-66868cd832f6" class="">As a deckbuilder and tactical game, keeping the player <strong>informed</strong> of gamestat changes at all times is crucial. </p><p id="288effe6-b825-4012-a99d-bd416ad94966" class="">It is equally important not to overwhelm them. Therefore, much of the information we provide to assist the player&#x27;s strategizing is through graphical presentations, to accelerate the player’s gameplay.</p><p id="b81c8228-81d9-4bd7-b4c7-bc46ab10d8c9" class="">For example, we provide the player with a <strong>preview system</strong> through <strong>on-grid feedback</strong> to indicate the consequences of player’s next action:</p><figure id="45b2338a-6dfa-4ef9-9eda-732ef4330c4a" class="image"><a href="earthless/Feedback_and_Input_Study_-_ListOfBoardFeedback.jpg"><img style="width:1200px" src="earthless/Feedback_and_Input_Study_-_ListOfBoardFeedback.jpg"/></a></figure><p id="475b9958-9c52-4484-bd4a-ad50e57de580" class="">
+</p><p id="696e0347-e3eb-4e51-9ae8-c82bc6a4631e" class="">Here’s a visualization of the grid feedback and preview system in the game, using the ship movement as an example:</p><p id="f6e85aab-bdd9-4cac-8678-7f3c67467bd3" class="">
+</p>
+<video  width="100%" controls>
+	<source src="earthless/UnitMovementSmall.mp4" type="video/mp4">
+	Your browser does not support the video playback.
+  </video>
+  <p id="01a9822f-0d01-4d83-ad67-1b03ce2fb32a" class=""><em><mark class="highlight-gray">Ship movement and preview system</mark></em></p><p id="f13483be-2813-4ee5-966e-070c69a7f0a9" class="">
+</p><h3 id="aa89d6c6-0184-4878-8086-e3b94b10bb31" class="">Overall Game Flow for Roguelike Gameplay:</h3><p id="54b3f6ae-e0db-4ee0-970c-2ee46a798ff0" class="">
+</p><p id="735f3df5-3e30-43ea-bb54-255ddc482c06" class="">After I finished the first-version wireframes of the in-game features, including encounters, roguelike events and passive upgrading systems, I moved on to out-game features and metagame features.</p><p id="6a1557b0-fac0-4a39-9dbd-7bcc27814e38" class="">
+</p><p id="a836556c-a3cb-408c-8618-848ad9989238" class="">In <strong>Figma</strong>, I created an<strong> interactive prototype</strong> of the whole gameflow in wireframes. This is used to effectively showcase features to executives and directors to accelerate design <strong>decision making</strong>, as well as to the team for clear <strong>communication</strong>.</p><p id="1469ec80-be00-4158-b5d6-0260db8ca2e1" class="">
+</p><p id="ed37ac80-6dcd-4b3e-a191-2df0eb4337c2" class="">Each major feature has an interactive prototype of the UX flow built in the Figma project, which helped us to <strong>test early</strong> and <strong>prevent errors</strong> in feature implementation.</p><p id="5188be73-7c75-42b0-90b5-8633f0cd5332" class="">
+</p><figure id="c92568d5-eea9-4101-b848-0b4bc88d65b9" class="image"><a href="earthless/Screenshot_2024-07-02_at_11.53.34_PM.png"><img style="width:960px" src="earthless/Screenshot_2024-07-02_at_11.53.34_PM.png"/></a></figure>
+<video  width="100%" controls>
+	<source src="earthless/new_whole_walkthrough3.mp4" type="video/mp4">
+	Your browser does not support the video playback.
+  </video>
+  <p id="" class=""><em><mark class="highlight-gray">Interactive prototype of early game flow in Figma</mark></em></p>
+<p id="0c954113-781f-439c-a07d-f9ffc32e4b52" class="">
+</p><hr id="b90f3d70-3b03-4e25-8d1d-d91af121728e"/><h1 id="4148f0ae-73b6-4e5a-b4b0-463bf2539611" class="">Non-conventional UI 📺</h1><p id="009bfa0a-0e9d-43ca-947d-3ab980ec1e6b" class="block-color-gray"><em><mark class="highlight-gray">We had a team with incredibly talented concept artists, 3D artists, and an exceptional UI artist. Now, how do we take the advantage of their expertise and make the game UI stand out from our predecessors and competitors?</mark></em></p><p id="1bfabf79-38a2-4ed6-ba72-461d6216e09b" class=""><mark class="highlight-default_background">The answer is simple: our UI should be part of the game’s world, harmonizing with the game’s world building in the same aethestic.</mark></p><p id="e4b85c15-d3c0-4c2f-ac3c-62a6e767d973" class="">Early on, we decided to build our game with <strong>Diegetic UI</strong>, which is not commonly used in the card game genre, to fulfill the player&#x27;s <strong>captain fantasy</strong> commanding a space battleship.</p><figure id="8c45c378-4fde-4b8c-8505-1918e1cdddd2" class="image"><a href="earthless/Roguelike_Card_Games_UX_Study_-_4TypesOfGameUI.jpg"><img style="width:2400px" src="earthless/Roguelike_Card_Games_UX_Study_-_4TypesOfGameUI.jpg"/></a></figure><h3 id="82c22120-e6b5-491a-8a85-737c979dcd96" class="">Diegetic UI:</h3><p id="d71b219c-2370-463d-a7cf-56e9b96b8056" class="">
+</p><p id="1653db5b-0409-4d5e-93f3-0861871d5272" class="">By presenting the advantages of diegetic UI, we moved forward with the composition of our main interfaces as the combination of the “Captain’s Console” and the “Holotable” as described earlier.</p><p id="6fc1ce54-533b-491f-98a6-08fe889e25e3" class="">
+</p><p id="35c94535-8816-405c-b58f-70cc8637a8d7" class="">Where the two interfaces providing the key functions of game-play in-game:</p><div id="3cc40b1c-a6b6-4045-be30-d15f0cea9403" class="column-list"><div id="ccea9637-b2e2-4144-976e-317125a0adbe" style="width:50%" class="column"><figure id="4bcdc392-f074-47e9-a8f8-475a428b4e43" class="image"><a href="earthless/7941f539-0510-44b0-b90c-69b3b148df89.png"><img style="width:602.8691983122363px" src="earthless/7941f539-0510-44b0-b90c-69b3b148df89.png"/></a></figure></div><div id="8492cfb9-9fdb-47f0-a715-90595baa9e69" style="width:50%" class="column"><figure id="d79734c6-41e4-4820-9e70-b0ccf0d5b4cc" class="image"><a href="earthless/Console_New_Card_Frame_Flat_230829.png"><img style="width:1920px" src="earthless/Console_New_Card_Frame_Flat_230829.png"/></a></figure></div></div><p id="394f1fb1-4343-4add-8550-bb0f3f0d8a2f" class="">
+</p><p id="929c8493-24dc-4723-b818-a4d320f5ae03" class="">and providing the rogue-like map (starmap) and out-game feature status and access: </p><div id="c973a143-be60-4c53-b467-9d17d7811d01" class="column-list"><div id="fc6dfc7c-5acf-4b5e-bed0-0e2400c20023" style="width:50%" class="column"><figure id="f3560c6b-9b76-43e1-94e7-01d6822ac07b" class="image"><a href="earthless/Screenshot_2024-07-02_at_11.28.27_PM.png"><img style="width:708px" src="earthless/Screenshot_2024-07-02_at_11.28.27_PM.png"/></a></figure></div><div id="7d074a7b-8854-40f1-92f7-3a060fed936c" style="width:50%" class="column"><figure id="ab0e864b-74a7-4c40-bbc3-cbac97c14a36" class="image"><a href="earthless/CaptainsConsole_Starmap_CrewPortraits.png"><img style="width:1920px" src="earthless/CaptainsConsole_Starmap_CrewPortraits.png"/></a></figure></div></div><p id="7979fdc5-18bb-4b18-ba9a-b7f4a3634ce9" class="">
+</p><p id="d7ecc5b9-5120-4cf4-80c9-2f12dfcf9ede" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="99666a4b-b21e-47a8-831e-a08f1c12369e"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Creative Thinking - What’s unique to 3D UI interactions?</strong></div></figure><div id="54a7b9b0-d000-45cb-821f-de42a5edbb0b" class="column-list"><div id="1177c2e5-a171-4fd8-9ed3-394c5fe4ebc0" style="width:50%" class="column"><figure id="c56884ca-2637-46cc-9dc0-a5fff4a3a6ff" class="image"><a href="earthless/captainPowerReady2.gif"><img style="width:324px" src="earthless/captainPowerReady2.gif"/></a></figure><p id="15e5f696-c86c-45ca-a623-18fa2dc5136b" class="">
+</p></div><div id="a1831ffa-a306-4365-be87-37be6d36bda4" style="width:50%" class="column"><p id="bc033d85-5a6c-4790-b39f-a64e9d2ff5af" class="">
+</p><p id="57bca74d-fbb7-4368-a27f-9645d1240c5d" class="">
+</p><p id="042109de-9737-40e1-9cf0-0d2cae7996f4" class="">
+</p><p id="df1da0e7-7481-4ba1-a50d-194d642daccf" class=""><strong>Interaction Status</strong>: Once charged to 100%, the Ship Ability will become available to use.</p><p id="df6e7afc-c31c-4211-8ce2-5632f6708b4e" class="">
+</p></div></div><div id="bf2476c8-2899-4446-ac4c-bcd02c360084" class="column-list"><div id="acab47c8-d948-42ec-933d-61f6dda932dc" style="width:100%" class="column"><p id="402bd76f-6b66-42da-8b9c-98155ec15e66" class="block-color-default">
+</p><p id="b4740376-d221-4bdb-ad74-692f3439d7ed" class="block-color-default">
+</p><p id="f5105178-caa1-4467-ad90-0793e67c18d7" class="block-color-default"><strong>Lively Feedback</strong>: Emission for hover states, pushing down for real-life reassembling. All for intuitive and satisfying interactions.</p><p id="6b31134d-60e5-46cf-8764-26cc7b7423d7" class="">
+</p></div><div id="a76058f7-db5f-45e2-9734-1ba2017bd190" style="width:100%" class="column"><figure id="cdee4c8d-9c80-4c08-8cd6-425f2e88688b" class="image"><a href="earthless/craftingButtons.gif"><img style="width:331px" src="earthless/craftingButtons.gif"/></a></figure><p id="88978c4c-2f92-40f5-a54b-7fa2a400c8fe" class="">
+</p></div></div><p id="817ebe27-ba1b-4f8e-8064-47fa936d8deb" class="">
+</p><p id="d8355e98-6721-4a68-9d8f-fdb6a7a07887" class="">We also ran into debates of out-game feature designs such as the following:</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="cb1e9a6e-41c3-4a5e-8476-b2d25f4bc732"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong> Challenge - Side Consoles or No Side Consoles?</strong></div></figure><p id="39068c29-efe1-4d44-9440-81f6ac463529" class="">
+</p><p id="f1005080-0f4d-4e84-b929-3276ed45c956" class="">This was definitely one of the most interesting problems I solved, creatively.</p><ul id="0983f6b4-3727-47a8-bf2e-ed44fcf10c7f" class="bulleted-list"><li style="list-style-type:disc">Previously, our metagame features such as crafting, upgrading and crew manifest were displayed on side consoles (imagine one macintosh with 2D UI displayed on the screen).</li></ul><ul id="32764b37-d9c4-413d-8abe-bebf6f2af9d1" class="bulleted-list"><li style="list-style-type:disc">However, we ran into two groups of opinions in the team: </li></ul><p id="d9d8bb43-02c8-4650-a276-2d777d5e8aaa" class="">
+</p><div id="d531e387-f500-4161-bb55-969dd4058309" class="column-list"><div id="8b48f3b5-607c-4a59-9d0b-05b509d9ac53" style="width:100%" class="column"><p id="389b8249-f6c2-4dcc-8cfc-4c59751ce4ef" class=""><strong>Artists: </strong></p><p id="3f2efa85-df8d-4b7d-91f0-be3808b4f2d1" class="">Side consoles were just screens mounted both side of the captain’s pedestals, looking like big iPads. We should remove them and have holographic 2D UI overlays for outgame features instead.</p></div><div id="e9768dd9-1822-4d60-831b-86cbdbbdbba2" style="width:100%" class="column"><p id="1b1a20c4-b62c-48a2-aaba-dfc34254f18c" class=""><strong>Me:</strong></p><p id="aa02bed4-7ec6-449f-86a8-b82e477dc5d7" class="">Great point, instead of removing them, we should consider more options that are:</p><ul id="b929e163-edf9-4592-a8cc-568b18092f68" class="bulleted-list"><li style="list-style-type:disc">Providing <strong>immersion</strong> and enhancing our narrative, and</li></ul><ul id="caf9716d-61ee-49ca-a30d-ac48332fe1da" class="bulleted-list"><li style="list-style-type:disc">Diegetic All-the-Way (<strong>Consistency</strong>) </li></ul></div></div><p id="27ca2fa2-5155-4657-b930-c375eedfbb44" class="">
+</p><p id="c5165045-f16d-4c68-a47d-0ac79b1fce24" class="">So here’s my <strong>solution</strong>:</p><ul id="a5ea59f1-821f-43c2-9247-7578bf1f4d1c" class="bulleted-list"><li style="list-style-type:disc">Be loyal to our retro-futuristic <strong>aesthetic</strong>, meanwhile, make it actually <strong>functional</strong>.</li></ul><ul id="010c594e-e290-4ee5-a868-477093bcc832" class="bulleted-list"><li style="list-style-type:disc">Make “physical” buttons and cartridges that are <strong>satisfying</strong> to click on and fun to observe, to attract users to out-game and metagame features.</li></ul><ul id="4be04ddd-78ef-4503-b27d-8a743e78eff6" class="bulleted-list"><li style="list-style-type:disc">3D cards and buttons are in-game, thus should also be present in out-game as-is to provide <strong>consistency</strong>.</li></ul><div id="735844a6-97f8-4f24-a5fa-874621374582" class="column-list"><div id="5664b138-f31b-46fc-b60b-4ad8e43e68e8" style="width:50%" class="column"><p id="e84f7a87-b696-4167-9b51-f04938f12ebe" class=""><br></br>My Proposal:<br></br></p><figure id="37e70ecf-a5ca-46bf-b8b2-a491057647af" class="image"><a href="earthless/Untitled.png"><img style="width:2666px" src="earthless/Untitled.png"/></a></figure></div><div id="6357addc-0d4f-4d08-bda7-e1b1d320d7a7" style="width:50%" class="column"><p id="b0dd4845-560d-44a9-93a0-f57b56bd372f" class=""><br></br>Which got everyone on board, and later in the game turned into:</p><figure id="4544db35-87b5-4e22-a0ba-166a5572231d" class="image"><a href="earthless/concoleConcept.png"><img style="width:1920px" src="earthless/concoleConcept.png"/></a></figure></div></div><p id="ff7fdf2f-d99f-4bf2-af8b-2eed434152f8" class="">
+</p><p id="d3c60a85-d199-4b73-bd94-b95b764ad2c7" class="">Here’s the breakdown for Crafting, Upgrading and Recycling, each utilizing the CRT screen, 3D buttons and the 3D cartridge from the same “console”:</p><p id="338828a5-1770-4093-ab23-4798dc27d992" class="">
+</p><figure id="af71e901-9dc2-4d7b-8c90-41535c89efee" class="image"><a href="earthless/Owl_UI_UX_-_Crafting_Artifact_Installing_and_Card_Removing.jpg"><img style="width:1152px" src="earthless/Owl_UI_UX_-_Crafting_Artifact_Installing_and_Card_Removing.jpg"/></a></figure><p id="9a475fe7-4bef-4bc3-95bf-721194a2aea0" class="">
+</p><p id="b7da69b3-c6a1-4221-87d7-a19d7b6a1d8b" class="">Utilizing Figma’s <strong>interactive prototype</strong> to visualize target user flow also helped me to present ideas and communicate with the team effectively. For example - this is how I designed to guide player’s attention for self-explanatory artifact installing function:</p><p id="d7b28e00-21d4-476f-aff7-c7fdfcc98c14" class="">
+</p>
+<video  width="100%" controls>
+	<source src="earthless/ConsoleCardUpgradeFigmaPrototypeSmall.mp4" type="video/mp4">
+	Your browser does not support the video playback.
+  </video>
+<figure id="12994b10-5c86-4bf5-ae38-2ac67681a0f3" class="image"><a href="earthless/image_(26).png"><img style="width:3840px" src="earthless/image_(26).png"/></a></figure><p id="dfb08680-d66e-42d1-8e5a-83bbbcc56478" class=""><em><mark class="highlight-gray">Upgrading / Recycling console</mark></em></p><h3 id="8c8778c6-b841-478d-bcdd-03031091b005" class="">Creative Narrative UI:</h3><p id="ec9097c8-b36c-42d3-8677-23e66eec4b31" class="">
+</p><p id="bc350173-36ee-4a82-bed6-c27f8573c44d" class="">Working with the narrative designer, we iterated the narrative events of the game a few times. Wen want to further reinforce the Captain Fantasy by building a stronger connection between the player (the captain) and the crew. </p><p id="b1b2062e-ccfe-4fab-8511-1f940f1de960" class="">Thus, instead of monologues delivered solely by AI in early iterations, we decided to present the event through crew’s communication in a <strong>chat-room-like</strong> setup: </p><p id="2ce25531-0d83-446e-b478-b07199be4847" class="">
+</p>
+<video  width="100%" controls>
+	<source src="earthless/NarrativeConsoleFigmaPrototype.mp4" type="video/mp4">
+	Your browser does not support the video playback.
+  </video>
+<p id="6bb0b684-1171-4c24-8e74-c1733887ca6e" class=""><em><mark class="highlight-gray">Ship Events - carried out in crew communication room</mark></em></p><p id="d19d2bf2-5ab8-4f8b-badb-fd12a087a99c" class="">All these diegetic design helped us to speak our aesthetic, assist user interaction and stand out in the Steam store. </p><p id="2bd0f654-7bc9-4457-9582-7ac828205335" class="">
+</p><hr id="d974b5a7-5874-4952-8ad4-458d3ea6f533"/><h1 id="e7454101-b689-4794-ba11-22373a553a4a" class="">Iterated, Fast 🏗️</h1><p id="5efc8b26-13aa-4380-ad82-d7d7c6f9776f" class=""><em><mark class="highlight-gray">With all the wireframe prototypes, we can fail fast to iterate fast, and sometimes we…</mark></em></p><h3 id="7d4106b5-8004-4161-b877-ef28574cc20f" class="">Fake it til’ Make it</h3><p id="19434352-e974-4754-9a05-9c307146eb0d" class="">When we decided to integrate an “Entrance Console” to make the transition from the main menu to the gameplay fitting the worldbuilding, I first implemented the console by reusing 2D concept assets:</p>
+<video  width="100%" controls>
+	<source src="earthless/NewGameSequence2DSmall.mp4" type="video/mp4">
+	Your browser does not support the video playback.
+  </video>
+<p id="6d945e46-4f6b-405b-a150-885046fc15cf" class=""><em><mark class="highlight-gray">Implementing the entrance console with 2D assets before switching to 3D (See FTUE section)</mark></em></p><p id="c1b5d44c-e122-40af-bd69-64dbedcd16cb" class="">Which proved the concept and readied it for milestone’s testing, followed by the production of the 3D assets with reassurance of positive feedback.</p><h3 id="69e2c160-809c-48a6-b254-f9dd4c712992" class="">Accelarating Feature Completion with Strike Teams</h3><p id="9296f6f6-480f-4419-a113-5f74930f1bff" class="">In the final year of production, we hit key milestones: Media exposure, Gamescom demo, and Steam Next Fest build. The game rapidly evolved, debuting at Steam Next Fest 2023 and garnering <strong>20k wishlists</strong>, topping the Steam leaderboard.</p><p id="18765a52-dcb3-4620-a5e6-dfbbb110055a" class="">Our success stemmed from efficient <strong>strike teams</strong>. For each milestone, we formed 4 teams, each tackling two or more major features within a 6-week timeline.</p><p id="425bb6e3-ef8b-4a2a-adc2-1eb21cc45c11" class="">I <strong>spearheaded</strong> 1-2 strike teams per milestone, collaborating with artists and engineers to streamline communication and accelerate development. We used <strong>Miro</strong> to keep track of the progress.</p><p id="79044219-36a3-40fb-8929-e9eb14d65ca6" class="">
+</p><figure id="641f27f4-68df-428c-b98f-41a7e6893904" class="image"><a href="earthless/Screenshot_2024-07-24_at_5.42.44_PM.png"><img style="width:1008px" src="earthless/Screenshot_2024-07-24_at_5.42.44_PM.png"/></a></figure><p id="642f4186-f73b-42a2-8c93-a75928cd074b" class=""><em><mark class="highlight-gray">Prioritizing the strike team features and goals </mark></em></p><figure id="4369ad71-8318-437b-a27c-75f26c72bc31" class="image"><a href="earthless/Screenshot_2024-07-24_at_5.37.54_PM.png"><img style="width:1698px" src="earthless/Screenshot_2024-07-24_at_5.37.54_PM.png"/></a></figure><p id="518f1a55-20ea-46cc-b977-3aca6d245897" class=""><em><mark class="highlight-gray">Legends for strike team prioritizing &amp; tasking</mark></em></p><hr id="a2b99b73-3b95-44fc-a782-b1b9da4f3283"/><h1 id="a06fcd76-3954-4f12-9b9c-63e3785d1ead" class="">FTUE x Narrative</h1><h3 id="95bf1f0f-c8d1-4d37-8a94-45c1389323e5" class="">Here’s Your Crew, Captain</h3><p id="73c79432-5275-444c-ab29-de7d9e881c96" class="">We designed the First-time User Experience (FTUE) combined with our narrative design - to present the player their ship of choices, crew members on a console, followed by an animated transition to the bridge and the captain’s pedestal where the main gameplay happens. <br/><br/>This would smoothly connect the metagame and in-game experiences in the same game space with full <br/><strong>immersion</strong>.</p><p id="7b8b0899-e9b2-4843-a740-60949ce5c63e" class="">
+</p><figure id="20e0ad9d-2b31-46f3-a721-686207155b1c" class="image"><a href="earthless/Bridge_Consoles_UI_UX_Mind_Map_-_Updated_New_Game_Sequence_(1).jpg"><img style="width:1008px" src="earthless/Bridge_Consoles_UI_UX_Mind_Map_-_Updated_New_Game_Sequence_(1).jpg"/></a></figure><p id="adb7da78-dba3-4f47-b2e6-9da16badb90d" class=""><em><mark class="highlight-gray">Flow of First-Run with FTUE vs. Regular Runs</mark></em></p><p id="205692e0-e6ca-46ed-97a8-a42ab853c81d" class="">
+</p>
+<video  width="100%" controls>
+	<source src="earthless/StartingSequence.mp4" type="video/mp4">
+	Your browser does not support the video playback.
+  </video>
+<p id="43820109-f850-40bf-8105-50bb29516f61" class=""><em><mark class="highlight-gray">Ship and crew introduction</mark></em></p><p id="41775f25-90b1-495a-b75c-5e218d333297" class="">
+	<video  width="100%" controls>
+		<source src="earthless/new_FTUE_transition.mp4" type="video/mp4">
+		Your browser does not support the video playback.
+	  </video>
+<p class=""><em><mark class="highlight-gray">Metagame - in-game Transition</mark></em>
+</p>
+</p><hr id="fc88af2a-0d0c-474f-affe-68a9194f2527"/><h1 id="60ce681e-68e4-49e7-b0eb-715473d2ccfb" class="">Compatibility and Control 🎮</h1><p id="e46e3501-aa26-4178-aaab-0ba2e2fb908f" class="">Our target platform is PC and Switch, where we are actively adapting a natural feeling control scheme. </p><p id="08a43595-aaa6-4565-8562-ec875066bcfd" class="">
+</p><figure id="fcb862df-8898-44dc-9703-c6ed4ab81fe9" class="image"><a href="earthless/Owl_UI_UX_-_Controller_Mind_Map_Smart.jpg"><img style="width:2136px" src="earthless/Owl_UI_UX_-_Controller_Mind_Map_Smart.jpg"/></a></figure><p id="2bb2e3ef-d4f9-494e-a0b2-5300d2d6b9c7" class="">
+</p><p id="391bcc72-8f57-4377-a979-d13d92dc4651" class="">
+</p><hr id="184fdd52-d80d-4efd-b243-59192bcab2d1"/><h1 id="137e03c9-b32c-49de-b760-3b01aed4e0c3" class="">What Do People Think? 🗒️</h1><h3 id="b323cba3-7993-458c-aa6a-289c2e786ac3" class="">Playtests</h3><p id="8d731fbd-dcf9-4c92-9f8c-a49dbb38dbaf" class="">With the limitation of testing opportunities, we were still able to conduct playtests in various forms, in-house or externally with the help of our publisher. <br/><br/></p><p id="7f727a35-3dc6-4130-9717-e6b57376c829" class=""><strong>Feature playtest in wireframes using Figma</strong></p><p id="12fa1b9f-e8e5-48d1-857c-8f02511f4c54" class="">After implementing a feature flow as an interactive prototype, I would gather feedback by having people navigate through the feature with minimal instructions. This approach helped us validate features early in each milestone’s development process.</p><p id="83f11278-a59a-44af-981b-7399eccbbd3a" class="">
+</p><p id="0b6be082-d7b3-49d9-a6f8-635507e9aeb4" class=""><strong>In-house playtests with milestone builds</strong></p><p id="ac5af5a4-6ef1-402b-bcd9-aa239f10e8d1" class="">We conducted in-house playtests on several milestone builds. Our data analyst collected and analyzed the results, which we then recorded and prioritized for solution implementation. We also extended our playtests to friends and family. Notably, we observed an <strong>8-year-old</strong> player play through the game without obstacles, which boosted our confidence in the game&#x27;s accessibility.</p><p id="85403e27-b132-43b9-b6c3-227f7318edbc" class="">
+</p><figure id="399e6a57-c8cf-4704-ab8e-54bbe2a2bb26" class="image"><a href="earthless/9e900519-ae51-43b2-8648-137c0f7cce4e.png"><img style="width:506.3291139240506px" src="earthless/9e900519-ae51-43b2-8648-137c0f7cce4e.png"/></a></figure><p id="feff6006-5d12-46b6-a9b3-b72dfe8143b9" class="">
+</p><p id="b765cd71-24e7-4f36-8072-649a8ba95f92" class=""><strong>External playtests through the publisher </strong></p><p id="f41f2670-22f1-4a21-88ac-dd073c327516" class="">Our publisher&#x27;s user research team conducted several playtests with recruited external players, while we were observing. These insights helped us improve controls and implement a FTUE tailored for players with varying levels of familiarity with the genre.</p><h3 id="d64e9ae3-9b03-4626-abd9-a01375f8acaa" class="">Media and Community Feedback</h3><p id="dda759e1-8104-4762-a660-fa994ed6bb40" class="">We received major game media’s feedback during the Gamescom and Steam Next Fest 2023. The media recognized the innovative strategy, engaging tactical combat and compelling atmostphere of Earthless, which encouraged us to polish the game further.</p><figure id="b73a28ee-09c8-4ad4-99ae-51a0358c1d31"><a href="https://www.rockpapershotgun.com/earthless-is-a-homeworld-cardgame-and-a-pretty-good-time" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Earthless is a Homeworld-esque cardgame, and a pretty good time</div><div class="bookmark-description">Blackbird Interactive&#x27;s next big thing is Homeworld 3, out February 2024, but Homeworld 3 has a little cousin, a new IP…</div></div><div class="bookmark-href"><img src="https://www.rockpapershotgun.com/static/e39a00a43ccbacc191965cfc9f9db51c/icon/apple-touch-icon.png" class="icon bookmark-icon"/>https://www.rockpapershotgun.com/earthless-is-a-homeworld-cardgame-and-a-pretty-good-time</div></div><img src="https://assetsio.gnwcdn.com/5_CYz9Sf5.jpg?width=1200&amp;height=630&amp;fit=crop&amp;enable=upscale&amp;auto=webp" class="bookmark-image"/></a><figcaption>Coverage by Rock Paper Shotgun</figcaption></figure><figure id="13b88247-4244-49bb-b4a4-05315e9e3248"><a href="https://www.pcgamer.com/earthless-is-a-new-sci-fi-deck-builder-from-the-creators-of-homeworld-3-where-youll-need-to-come-up-with-ludicrous-game-breaking-combos-and-win-over-your-crew-to-have-a-chance-at-saving-humanity/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Earthless is a new sci-fi deck builder from the creators of Homeworld 3 where you&#x27;ll...</div><div class="bookmark-description">In Earthless, you&#x27;re a &quot;single ship against the many&quot; after the Sun has engulfed humanity&#x27;s home.</div></div><div class="bookmark-href"><img src="https://vanilla.futurecdn.net/pcgamer/1002829/apple-touch-icon.png" class="icon bookmark-icon"/>https://www.pcgamer.com/earthless-is-a-new-sci-fi-deck-builder-from-the-creators-of-homeworld-3-where-youll-need-to-come-up-with-ludicrous-game-breaking-combos-and-win-over-your-crew-to-have-a-chance-at-saving-humanity/</div></div><img src="https://cdn.mos.cms.futurecdn.net/QgPx3nqCsFRnnmXobiG2RT-1200-80.jpg" class="bookmark-image"/></a><figcaption>Coverage by PC Gamer</figcaption></figure><figure id="722a3786-9a6b-4167-b969-e4167c15f56c"><a href="https://www.techradar.com/gaming/pc-gaming/earthless-preview-a-mass-of-systems-combine-for-a-compelling-sci-fi-card-game" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Earthless preview - a mass of systems combine for a compelling sci-fi card game</div><div class="bookmark-description">FTL The Spire</div></div><div class="bookmark-href"><img src="https://vanilla.futurecdn.net/techradar/1003415/apple-touch-icon.png" class="icon bookmark-icon"/>https://www.techradar.com/gaming/pc-gaming/earthless-preview-a-mass-of-systems-combine-for-a-compelling-sci-fi-card-game</div></div><img src="https://cdn.mos.cms.futurecdn.net/QMdeVpT33xDyE42uva5M4B-1200-80.jpg" class="bookmark-image"/></a><figcaption>Coverage by Tech Radar</figcaption></figure><p id="e3b76525-8f90-4878-9a6f-38c1f70cdb29" class="">
+</p><hr id="2411226f-eb40-4e71-bf75-7936f3d4534d"/><h1 id="df7b7d48-5ae5-47de-bdb3-075545fa6172" class="">Tech UI Implementation in Engine</h1><p id="136dd262-87ff-4af6-907e-f2a864968026" class="">I also worked as the tech UI designer on the team to implement responsive UI visuals in the game. Here are some of the examples of my responsive 2D/3D UI implementation:</p><p id="36deccf9-5ea7-4101-ae70-9679ee255fc8" class="">
+</p><p id="649ac821-f297-4b3c-9a44-f28dc42f59b8" class=""><strong>UI Assets Creation and Responsive UI Implementation:</strong></p><figure id="bf551edb-4eb0-4cf6-8098-00a8c38f5e7d" class="image"><a href="earthless/cardassetbreakdown.png"><img style="width:708px" src="earthless/cardassetbreakdown.png"/></a></figure><p id="e14ae013-9605-4b65-8dcf-b46a2e227766" class="">
+</p>
+<video  width="100%" controls>
+	<source src="earthless/Auto-expanding_1_1.mp4" type="video/mp4">
+	Your browser does not support the video playback.
+  </video><p id="fbd62999-ef8e-4e18-852d-9e0575a101a1" class="">
+</p><p id="80301358-6aef-4d78-9e1e-afbadcfb6f23" class=""><strong>Responsive HUD UI:</strong></p>
+<video  width="100%" controls>
+	<source src="earthless/Tooltip_Expanding.mp4" type="video/mp4">
+	Your browser does not support the video playback.
+  </video><p id="10c1f01c-167f-4393-a1d8-dbce760c77e0" class="">
+</p><p id="51674c5f-328d-4ab7-96c1-c8a4bc9ebba7" class=""><strong>2D UI Animation and Effects:</strong></p><p id="a84b36a3-8a3c-4909-8623-6077e46d2b0e" class="">Example - Node name banner: Instead of requesting shaders for reflection graphics, I chose to use multiple layers of 2D UI element:</p>
+<video  width="100%" controls>
+	<source src="earthless/BannerAnimationSmall.mp4" type="video/mp4">
+	Your browser does not support the video playback.
+  </video><p id="f57cedea-fc5b-4c6f-8d8d-51ffd38a6d5f" class="">
+</p><p id="29beb721-feb8-4ce9-9bde-ab32cc620d2e" class=""><strong>3D UI Animation and Effects:</strong></p><p id="ab3af786-e824-40b3-b147-9e46d7532576" class="">I also worked on several 3D UI animation and effects (i.e. hovering) before animator joined to tune them further.</p>
+<video  width="100%" controls>
+	<source src="earthless/3DButtonClickingSmall.mp4" type="video/mp4">
+	Your browser does not support the video playback.
+  </video><p id="d4fc3778-2a1c-47e8-a73e-3f440b72eff4" class="">
+</p><hr id="4602b5c8-56de-4b65-965b-81e2d9f50199"/><h1 id="884459ec-316e-47b0-be16-cd8b3ef91d6f" class="">Thank You for Reading, and…</h1><p id="2118d0dc-93f0-4a70-9dfe-1fefd5e5cdaf" class="">If you have any question regarding this project, please feel free to reach out!</p><p id="d69181ac-0374-40d6-ab75-dcf548cfef8c" class="">
+</p><p id="685f0061-01c4-49d6-b348-41a92125be5d" class="">Awesome people I collaborated with:</p><p id="36836e7d-f39d-4b19-be80-063e5cbea40f" class="">Hoi-Fung Ma - Design Director</p><p id="98fc7999-6689-4edc-a353-74736955f895" class="">Sam Bradley - Lead UI Artist</p><p id="08252277-08e3-4fd7-9871-3a6e658d3aac" class="">Thomas Patterson - Gameplay / Front-end Engineer</p><p id="9b8b9fbb-5fbd-48c2-a727-e1f408ae4f93" class="">Brooke Waddington - Technical Artist</p><p id="f5a0e0ac-6c70-4775-b689-aca6768aa156" class="">Rob Aduna - Art Director</p><p id="a3952e67-8c8c-4247-ac79-4e789e12c2c2" class="">David Cheong - Principle Concept Artist</p><p id="067817a8-3808-4e77-8621-bf672bcacdbf" class="">David Ok - Concept Artist</p><p id="8d186de4-4168-4322-9b02-a9a4ef4881aa" class="">Brent - Audio Composer</p><p id="c96957a4-93af-430d-88a0-f79c7bf8b90a" class="">And the entire Earthless team</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+<a href="earthless.html#top"><h1 class="highlight-gray">Back to Top</g1></a></body></html>
